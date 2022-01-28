@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState}  from 'react';
 import Map from './components/Map'
 
 const App = () => {
@@ -43,11 +43,11 @@ const App = () => {
       <button onClick={onHandleAdd}>Add</button>
       <ul>
        <Map 
-        onHandleUpdate={this.onHandleUpdate}
-        onHandleEdit={this.onHandleEdit}
-        onHandleDelete={this.onHandleDelete}
-        list={this.state.list}
-        isEditing={this.state.isEditing}
+        onHandleUpdate={onHandleUpdate}
+        onHandleEdit={onHandleEdit}
+        onHandleDelete={onHandleDelete}
+        list={list}
+        isEditing={isEditing}
       />
       </ul>
     </div>
