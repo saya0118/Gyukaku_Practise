@@ -1,23 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import Map from './components/Map'
 
-function App() {
+const App = () => {
+
+  const [input, setInput] = useState("");
+  const [list, setList] = useState([]);
+  const [isEditing, setIsEditing] = useState("")
+
+  const onChange = (event) => {
+    setInput(event.target.value)
+  }
+
+  const onHandleAdd = () => {
+    setList([...list, input])
+    setInput("")
+  }
+
+  const onHandleDelete = (index) => {
+    const newList = [...list]
+    newList.splice(index, 1)
+    setList(newList)
+  }
+
+  const onHandleEdit = (index) => {
+    setIsEditing(index);
+    const item = list[index];
+    setInput(item);
+  }
+
+  const onHandleUpdate = (index) => {
+    const updated = [...list];
+    updated[index] = input;
+    setList(updated);
+    setInput("");
+    setIsEditing(false);
+  }
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input value={input} type="text" onChange={onChange}></input>
+      <button onClick={onHandleAdd}>Add</button>
+      <ul>
+       <Map 
+        onHandleUpdate={this.onHandleUpdate}
+        onHandleEdit={this.onHandleEdit}
+        onHandleDelete={this.onHandleDelete}
+        list={this.state.list}
+        isEditing={this.state.isEditing}
+      />
+      </ul>
     </div>
   );
 }
